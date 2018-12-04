@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech');
+*{
+    font-family: 'Share Tech';
+}
+
+body {
+        color:#FFF;
+        background-color: #0000;
+        text-align:center;
+        background-image: url("img/img4.gif");
+        /* Full height */
+        height: 100%;
+        background-size: cover;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:cover;
+        overflow:hidden;
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 100;
+        -webkit-transform: translate3d(0,0,0);
+}
+
+
+div {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+div:first-of-type {    /* For increasing performance 
+                       ID/Class should've been used. 
+                       For a small demo 
+                       it's okaish for now */
+  animation: showup 7s infinite;
+}
+
+div:last-of-type {
+  width:0px;
+  animation: reveal 7s infinite;
+}
+
+div:last-of-type span {
+  margin-left:-275px;
+  animation: slidein 7s infinite;
+}
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-600px; }
+    20% { margin-left:-600px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:100px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:245px;}
+}
+p {
+  font-size:42px;
+  color:#FFF;
+  font-family:'Share Tech', sans-serif;;
+
+}

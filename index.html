@@ -1,0 +1,149 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css"> 
+    <link rel="stylesheet" href="css/menu.css">    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+
+<header style="padding: 2.0% 3.5% 2.0%;background: black;">
+    <div style="text-align: center;color: white;font-size: 2rem">
+        GEO<img  src="css/img/logo_3.png">STAR
+    </div>
+</header>  
+<body>
+<!--Mapa y 360-->
+        <div id="map" ></div>
+        <div id="pano"></div>
+        <script>
+    
+          function initialize() {
+            var fenway = {lat: 42.345573, lng: -71.098326};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: fenway,
+              zoom: 14,
+              mapTypeId: 'roadmap'
+            });
+
+            var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('pano'), {
+                  position: fenway,
+                  pov: {
+                    heading: 34,
+                    pitch: 10
+                  }
+                });
+            map.setStreetView(panorama);
+          }
+        </script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVY-FP39JT5-RHWdzQR4Xf4w3krWrhvmw&callback=initialize">
+        </script>
+<!--Fin del mapa y 360-->
+<!-- Sección del menú izquierdo-->
+<input type="checkbox" class="checkbox" id="check">
+<label class="menu" for="check">|||</label>
+<div class="left-panel">
+    <ul style="margin-left:-2rem;margin-right: 1.5rem;">
+            <button class="accordion"> <strong>Perfil</strong> </button>
+            <div class="panel">
+                <p class="select"><a  href="index.html" >Ver perfil</a></p>
+                <p class="select"><a >Administrar usuarios</a></p>
+                <p class="select"><a  href="login.html">Salir</a></p>
+            </div>
+            
+            <button class="accordion"><strong>Capas</strong></button>
+            <div class="panel">
+                    <div class="tab">
+                            <button class="tablinks" onclick="openCity(event, 'capas')">Capas</button>
+                            <button class="tablinks" onclick="openCity(event, 'miscapas')">Mis Capas</button>
+                    </div>
+                          <div id="capas" class="tabcontent">
+                            <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black">
+                            <br><br>
+                            <label class="container">Salud
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container">Educación
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container">Tránsito
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container">Policía
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                            </label>                          
+                        </div>
+                          
+                          <div id="miscapas" class="tabcontent">
+                                <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black">
+                                <br><br>
+                                <label class="container">Capa 1
+                                        <input type="checkbox" checked="checked">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <label class="container">Capa 2
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <label class="container">Capa 3
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <label class="container">Capa 4
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                </label> 
+                            </div>
+                          <script>
+                                function openCity(evt, cityName) {
+                                    var i, tabcontent, tablinks;
+                                    tabcontent = document.getElementsByClassName("tabcontent");
+                                    for (i = 0; i < tabcontent.length; i++) {
+                                        tabcontent[i].style.display = "none";
+                                    }
+                                    tablinks = document.getElementsByClassName("tablinks");
+                                    for (i = 0; i < tablinks.length; i++) {
+                                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                    }
+                                    document.getElementById(cityName).style.display = "block";
+                                    evt.currentTarget.className += " active";
+                                }
+                        </script>       
+            </div>   
+
+            <button class="accordion"><strong>Herramientas</strong></button>
+            <div class="panel">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div> 
+            <button class="accordion"><strong>GPS</strong></button>
+            <div class="panel">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+    </ul>
+</div>
+<script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+</script>
+<!--Fin del menu-->
+</body>  
+</html>
