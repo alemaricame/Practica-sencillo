@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech');
+*{
+    font-family: 'Share Tech';
+}
+h2{
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Share Tech';
+}
+.user-box {
+    background-color: rgb(214,154,45); 
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    top: 15%;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    height: 100%;
+}
+.details{
+    font-style: bold;
+}
+input{
+    border: none;
+    border-bottom: 2px solid black;
+    background-color:rgba(255, 255, 255, 0.219);
+    text-align:center;
+    size: 7rem;
+    font-size: 1rem
+}

@@ -1,0 +1,11 @@
+.right-panel{
+    margin-top: 7%;
+    width: -30rem;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0.3);
+    position: absolute;
+    top:0;
+    left:-32rem;
+    display:flex;
+    transition: left 0.4s;
+}

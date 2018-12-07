@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/perfil.css"> 
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <header style="padding: 2.0% 3.5% 2.0%;background: black;">
+            <div style="text-align: center;color: white;font-size: 2rem">
+                GEO<img  src="css/img/logo_3.png">STAR
+            </div>
+    </header>
+<body>
+        <h2 >Bienvenido</h2>
+<div class="user-box">
+
+    <div class="details">
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('user')">Configuración de usuario</button>
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('save')">Proyectos guardados</button>
+    </div>
+
+    <div id="user" class="w3-container id">
+        <div class="w3-container w3-content">
+            <p class="w3-opacity" style="font-size: 2rem"><b>Información de usuario</b></p> 
+            <div class="w3-panel w3-white w3-card w3-display-container">
+              <p style="color:rgb(214,154,45)"><b>Usuario</b></p>
+              <input type="text" placeholder="Usuario" class="sinput" disabled>
+              <p style="color:rgb(214,154,45)"><b>Correo</b></p>
+              <input type="text" placeholder="Correo" class="sinput" disabled>
+              <p style="color:rgb(214,154,45)"><b>Contraseña</b></p> 
+              <input type="text" placeholder="Contraseña" class="sinput" disabled> <a>
+              <acronym title="Cambiar contraseña"><i class="material-icons" style="cursor:pointer">create</i></a></acronym>
+        <br><br>    
+        </div>
+    </div>
+    <div id="save" class="w3-container id" style="display:none">
+        <h3>Elementos guardados</h3>
+    </div>
+    <script>
+        function openO(id) {
+            var i;
+            var x = document.getElementsByClassName("id");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none"; 
+        }
+            document.getElementById(id).style.display = "block"; 
+        }
+    </script>
+    
+</div>
+</body>
+</html>

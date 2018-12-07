@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/menu.css">    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <header style="padding: 2.0% 3.5% 2.0%;background: black;">
@@ -14,9 +16,10 @@
     </div>
 </header>  
 <body>
+
 <!--Mapa y 360-->
         <div id="map" ></div>
-        <div id="pano"></div>
+        <div id="pano" ></div>
         <script>
     
           function initialize() {
@@ -44,14 +47,13 @@
 <!--Fin del mapa y 360-->
 <!-- Sección del menú izquierdo-->
 <input type="checkbox" class="checkbox" id="check">
-<label class="menu" for="check">|||</label>
+<label class="menu" for="check" style="height: 5rem;width: 1rem;"></label>
 <div class="left-panel">
     <ul style="margin-left:-2rem;margin-right: 1.5rem;">
             <button class="accordion"> <strong>Perfil</strong> </button>
             <div class="panel">
-                <p class="select"><a  href="index.html" >Ver perfil</a></p>
-                <p class="select"><a >Administrar usuarios</a></p>
-                <p class="select"><a  href="login.html">Salir</a></p>
+                <a  href="perfil.html" ><p class="select"> <i class="material-icons">account_circle</i> Ver perfil</p></a>
+                <a  href="login.html"><p class="select"><i class="material-icons">input</i> Salir</p></a>
             </div>
             
             <button class="accordion"><strong>Capas</strong></button>
@@ -61,7 +63,7 @@
                             <button class="tablinks" onclick="openCity(event, 'miscapas')">Mis Capas</button>
                     </div>
                           <div id="capas" class="tabcontent">
-                            <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black">
+                            <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black"><i class="fa fa-search"></i>
                             <br><br>
                             <label class="container">Salud
                                     <input type="checkbox" checked="checked">
@@ -79,12 +81,12 @@
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                             </label>                          
-                        </div>
+                         </div>
                           
                           <div id="miscapas" class="tabcontent">
-                                <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black">
+                                <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black"> <i class="fa fa-search"></i>
                                 <br><br>
-                                <label class="container">Capa 1
+                                     <label class="container">Capa 1
                                         <input type="checkbox" checked="checked">
                                         <span class="checkmark"></span>
                                       </label>
@@ -99,7 +101,7 @@
                                       <label class="container">Capa 4
                                         <input type="checkbox">
                                         <span class="checkmark"></span>
-                                </label> 
+                                     </label> 
                             </div>
                           <script>
                                 function openCity(evt, cityName) {
@@ -115,13 +117,8 @@
                                     document.getElementById(cityName).style.display = "block";
                                     evt.currentTarget.className += " active";
                                 }
-                        </script>       
-            </div>   
-
-            <button class="accordion"><strong>Herramientas</strong></button>
-            <div class="panel">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div> 
+                         </script>       
+            </div>    
             <button class="accordion"><strong>GPS</strong></button>
             <div class="panel">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -145,5 +142,14 @@
         }
 </script>
 <!--Fin del menu-->
+<!--Menú de herramientas-->
+<div class="menud" >
+    <acronym title="Imprimir"><p><i class="material-icons" style="cursor: pointer;">print</i></p></acronym>
+    <acronym title="Borrar todas capas"><p><i class="material-icons" style="cursor: pointer;">delete</i></p></acronym>
+    <acronym title="Ocultar capas"><p><i class="material-icons" style="cursor: pointer;">visibility_off</i></p></acronym>
+    <acronym title="Mostrar capas"><p><i class="material-icons" style="cursor: pointer;">visibility</i></p></acronym>
+    <acronym title="Guardar"><p><i class="material-icons" style="cursor: pointer;">save</i></p></acronym>
+    <acronym title="Importar"><p><i class="material-icons" style="cursor: pointer;">archive</i></p></acronym>
+</div>  
 </body>  
 </html>
