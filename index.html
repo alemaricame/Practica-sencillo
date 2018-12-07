@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="css/index.css"> 
     <link rel="stylesheet" href="css/menu.css">    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
@@ -21,16 +20,86 @@
         <div id="map" ></div>
         <div id="pano" ></div>
         <script>
-    
-          function initialize() {
-            var fenway = {lat: 42.345573, lng: -71.098326};
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: fenway,
-              zoom: 14,
-              mapTypeId: 'roadmap'
-            });
-
-            var panorama = new google.maps.StreetViewPanorama(
+            var fenway ={lat: 42.345573, lng: -71.098326};
+            var map;
+    var marker = [];
+            var infowindow;
+            var kmls = new Array();
+            var colors = new Array();
+            var searchmarker;
+            var center;
+            var newCoord = [];
+            var nc = 0;
+            var TILE_SIZE = 256;
+            var hidemap = false;
+            var filterWindow = new Array();
+            var wait;
+            var mapOpacity = 1;
+            var corregidoraMapType;
+            var errorGlobalStatus = false;
+            var xhr = [];
+      function initMap()  {
+        var mapStyle = [
+                    {
+                        featureType: "all",
+                        stylers: [{saturation: -100}]
+                    }, {
+                        'featureType': 'landscape',
+                        'elementType': 'geometry',
+                        'stylers': [{'visibility': 'on'}, {'color': '#ddd'}]
+                    }, {
+                        'featureType': 'water',
+                        'elementType': 'labels',
+                        'stylers': [{'visibility': 'off'}]
+                    }, {
+                        'featureType': 'water',
+                        'elementType': 'geometry',
+                        'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
+                    }];
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 20.601637762245360, lng: -100.375105291311371},
+          zoom: 18,
+          maxZoom: 22,
+          minZoom: 10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          scrollwheel: false,
+          rotateControl: false,
+          clickableIcons: false,
+          fullscreenControl: false,
+          styles: mapStyle
+        });
+        
+        map.data.loadGeoJson('/christian/Queretaro.geojson');
+        map.data.setStyle({
+                    strokeColor: "#00000",
+                    fillColor: "#D69A2D",
+                    strokeWeight: 2,
+                    fillOpacity: 1,
+                    clickable: false,
+                    draggable: false,
+                    editable: false,
+                });
+                
+                corregidoraMapType = new google.maps.ImageMapType({
+                    getTileUrl: function(coord, zoom) {
+                        if (zoom < 11 || hidemap)
+                            return null;
+                        return zoom + "/" + coord.x + "/" + (Math.pow(2,zoom)-coord.y-1) + ".png";
+                    },
+                    tileSize: new google.maps.Size(TILE_SIZE, TILE_SIZE),
+                    maxZoom: 22,
+                    minZoom: 10,
+                    radius: 7437,
+                    name: 'Corregidora',
+                    opacity: mapOpacity,
+                    isPng: true
+                });
+                map.overlayMapTypes.push(corregidoraMapType);
+                
+                var panorama = new google.maps.StreetViewPanorama(
                 document.getElementById('pano'), {
                   position: fenway,
                   pov: {
@@ -39,11 +108,12 @@
                   }
                 });
             map.setStreetView(panorama);
-          }
+      }
         </script>
         <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVY-FP39JT5-RHWdzQR4Xf4w3krWrhvmw&callback=initialize">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVY-FP39JT5-RHWdzQR4Xf4w3krWrhvmw&callback=initMap">
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!--Fin del mapa y 360-->
 <!-- Sección del menú izquierdo-->
 <input type="checkbox" class="checkbox" id="check">
