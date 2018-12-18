@@ -1,0 +1,135 @@
+<!DOCTYPE>
+<html>
+ <style>
+         .button {
+            background-color: rgba(190, 190, 190, 0.781); /* Green */
+            border: 1px solid rgba(192, 192, 192, 0.747);
+            color: rgb(0, 0, 0);
+            padding: 1rem 0.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #8b8989a8;
+        }
+ </style>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/perfil_admin.css"> 
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <header style="padding: 2.0% 3.5% 2.0%;background: black;">
+            <div style="text-align: center;color: white;font-size: 2rem">
+                GEO<img  src="css/img/logo_3.png">STAR
+            </div>
+    </header>
+<body>
+    <acronym title="Regresar"><a style="margin-left: 4%;top: 2%;cursor:pointer" href="index.html"><i class="material-icons">reply</i></a></acronym>
+    <acronym title="Salir"><a style="right: 4%;width: 4rem;float:right;cursor:pointer" href="login.html"><i class="material-icons">input</i></a></acronym>
+
+        <p class="w3-opacity" style="font-size: 2rem;text-align: center"><b>Configuración</b></p> 
+    <div class="user-box">
+
+    <div class="details">
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('user')">Configuración de usuario</button>
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('usuarios')">Configuración de usuarios</button>
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('capas')">Configuración de capas</button>
+        <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('save')">Proyectos guardados</button>
+    </div>
+
+    <div id="user" class="w3-container id">
+        <div class="w3-container w3-content">
+            <p class="w3-opacity" style="font-size: 2rem"><b>Información de usuario</b></p> 
+            <div class="w3-panel w3-white w3-card w3-display-container">
+                <p style="color:rgb(214,154,45)"><b>Usuario</b></p>
+                <input type="text" placeholder="Usuario" class="sinput" disabled>
+                <p style="color:rgb(214,154,45)"><b>Correo</b></p>
+                <input type="text" placeholder="Correo" class="sinput" disabled>
+                <p style="color:rgb(214,154,45)"><b>Contraseña</b></p> 
+                <input type="text" placeholder="Contraseña" class="sinput" disabled> 
+                <acronym title="Cambiar contraseña"><i class="material-icons" style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'">create</i></acronym>
+                <br><br>
+            </div>
+        </div>
+    </div>
+          <!-- Modal para cambiar la contraseña -->
+          <div id="id01" class="w3-modal" style="color:white;background-color:rgb(0, 0, 0);position: absolute;top: 50%;left: 50%;width: 100%;min-width: 600px;max-width: 800px;height: 400px;transform: translate(-50%);">
+                <div>
+                  <div style="text-align: center;font-size: 1.2rem">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <p style="color:rgb(214,154,45)"><b>Contraseña:</b></p> 
+                    <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput" > <a>
+                    <p style="color:rgb(214,154,45)"><b>Vuelve a ingresar la contraseña:</b></p> 
+                    <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput"> <a>
+                    <br><br>
+                    <button class="button"type="submit">Guardar</button>
+                  </div>
+                </div>
+              </div>
+          <!--Fin del modal para cambiar la contraseña-->  
+    <div id="usuarios" class="w3-container id" style="display:none">
+        <div class="w3-container w3-content ">
+            <p class="w3-opacity" style="font-size: 2rem"><b>Usuarios</b></p> 
+            <ul>
+                <li ><a onclick="document.getElementById('usuario1').style.display='block'">Usuario</a></li>
+                <li>Usuario 2</li>
+            </ul>
+        </div>
+    </div>
+    <!--Editar usuarios-->
+    <div id="usuario1" class="w3-modal" style="color:white;background-color:rgb(0, 0, 0);position: absolute;top: 45%;left: 50%;width: 50%;min-width: 60rem;max-width: 20rem;height: 30rem;transform: translate(-50%);">
+            <div>
+              <div style="text-align: center;font-size: 1.2rem">
+                <span onclick="document.getElementById('usuario1').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <p style="color:rgb(214,154,45)"><b>Usuario:</b></p> 
+                <input style="background-color: white;" type="text" placeholder="Usuario" class="sinput" > 
+                <p style="color:rgb(214,154,45)"><b>Correo:</b></p> 
+                <input style="background-color: white" type="text" placeholder="Correo" class="sinput"> 
+                <hr>
+                 <strong><p>Restablecer contraseña</p></strong>
+                 <hr>
+                <p style="color:rgb(214,154,45)"><b>Escribe nueva contraseña:</b></p> 
+                <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput">
+                <p  style="color:rgb(214,154,45)"><b>Vuelve a ingresar la contraseña:</b></p> 
+                <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput">
+                <br><br>
+                <button class="button" type="submit">Eliminar</button>
+                <button class="button" type="submit">Guardar</button>
+                <br>
+              </div>
+            </div>
+          </div>
+    <!--Fin de editar usuarios-->
+    <div id="capas" class="w3-container id" style="display:none">
+        <div class="w3-container w3-content">
+            <p class="w3-opacity" style="font-size: 2rem"><b>Capas</b></p> 
+         
+        </div>
+    </div>
+    <div id="save" class="w3-container id" style="display:none">
+        <div class="w3-container w3-content">
+            <p class="w3-opacity" style="font-size: 2rem"><b>Proyectos</b></p> 
+         
+        </div>
+    </div>
+    <!--Script para abrir los contenedores-->
+    <script>
+        function openO(id) {
+            var i;
+            var x = document.getElementsByClassName("id");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none"; 
+        }
+            document.getElementById(id).style.display = "block"; 
+        }
+    </script>
+
+</div>
+</body>
+</html>
+

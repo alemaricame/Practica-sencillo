@@ -1,5 +1,21 @@
 <!DOCTYPE>
 <html>
+    <style>
+        .button {
+            background-color: rgba(190, 190, 190, 0.781); /* Green */
+            border: 1px solid rgba(192, 192, 192, 0.747);
+            color: rgb(0, 0, 0);
+            padding: 1rem 0.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #8b8989a8;
+        }
+    </style>
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/perfil.css"> 
@@ -13,11 +29,11 @@
             </div>
     </header>
 <body>
-    <acronym title="Regresar"><a style="margin-left: 4%;top: 2%;cursor:pointer" href="index.html"><i class="material-icons">reply</i></a></acronym>
-    <acronym title="Salir"><a style="right: 4%;width: 4rem;float:right;cursor:pointer" href="login.html"><i class="material-icons">input</i></a></acronym>
+    <acronym title="Regresar"><a style="margin-left: 2%;top: 2%;cursor:pointer" href="index.html"><i class="material-icons">reply</i></a></acronym>
+    <acronym title="Salir"><a style="right: 2rem;width: 2rem;float:right;cursor:pointer" href="login.html"><i class="material-icons">input</i></a></acronym>
 
-        <h2 >Bienvenido</h2>
-<div class="user-box">
+    <p class="w3-opacity" style="font-size: 2rem;text-align: center"><b>Configuración</b></p> 
+    <div class="user-box">
 
     <div class="details">
         <button class="w3-bar-item w3-button w3-black" style="width: 15rem;" onclick="openO('user')">Configuración de usuario</button>
@@ -34,7 +50,7 @@
               <input type="text" placeholder="Correo" class="sinput" disabled>
               <p style="color:rgb(214,154,45)"><b>Contraseña</b></p> 
               <input type="text" placeholder="Contraseña" class="sinput" disabled> <a>
-              <acronym title="Cambiar contraseña"><i class="material-icons" style="cursor:pointer">create</i></a></acronym>
+              <acronym title="Cambiar contraseña"><i class="material-icons" style="cursor:pointer" onclick="document.getElementById('id01').style.display='block'">create</i></a></acronym>
         <br><br>    
         </div>
     </div>
@@ -51,7 +67,21 @@
             document.getElementById(id).style.display = "block"; 
         }
     </script>
-    
+    <!-- Modal para cambiar la contraseña -->
+<div id="id01" class="w3-modal" style="color:white;background-color:rgb(0, 0, 0);position: absolute;top: 50%;left: 50%;width: 100%;min-width: 600px;max-width: 800px;height: 400px;transform: translate(-50%);">
+    <div>
+      <div style="text-align: center;font-size: 1.2rem">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+        <p style="color:rgb(214,154,45)"><b>Contraseña:</b></p> 
+        <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput" > <a>
+        <p style="color:rgb(214,154,45)"><b>Vuelve a ingresar la contraseña:</b></p> 
+        <input style="background-color: white" type="password" placeholder="Contraseña" class="sinput"> <a>
+        <br><br>
+            <button type="submit" class="button">Guardar</button>
+      </div>
+    </div>
+  </div>
+  <!--Fin del modal para cambiar la contraseña-->
 </div>
 </body>
 </html>
