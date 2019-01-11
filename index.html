@@ -2,27 +2,46 @@
 <html>
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/index.css"> 
-    <link rel="stylesheet" href="css/menu.css">    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style media="screen">
+      #canvas{
+        width:30px;
+        height: 50px;
+        display: none;
+      }
+      #box{
+        width: 50%;
+        height: 100px;
+        display: none;
+        position: absolute;
+        align-content: center;
+        text-align: center;
+        margin-top: 1%;
+        margin-left: 25%;
+      }
+    </style>
+
 </head>
 
 <header style="padding: 2.0% 3.5% 2.0%;background: black;">
     <div style="text-align: center;color: white;font-size: 2rem">
         GEO<img  src="css/img/logo_3.png">STAR
     </div>
-</header>  
+</header>
 <body>
 
 <!--Mapa y 360-->
-        <div id="map" ></div>
-        <div id="pano" ></div>
-        <script>
-            var fenway ={lat: 42.345573, lng: -71.098326};
+<div id="map" style="width:80%;"></div>
+<div id="pano" style="width: 20%;"></div>
+<script>
+  var fenway ={lat: 42.345573, lng: -71.098326};
             var map;
-    var marker = [];
+            var marker = [];
             var infowindow;
             var kmls = new Array();
             var colors = new Array();
@@ -38,6 +57,33 @@
             var corregidoraMapType;
             var errorGlobalStatus = false;
             var xhr = [];
+
+          function loading(div, menu){
+            console.log("looooad");
+            this.div = div;
+            this.visible = false;
+            this.process = 0;
+            this.show = function() {
+                this.process++;
+                menu.hide('Blind',null,500);
+                div.show();
+            };
+            this.hide = function() {
+                if (this.process === 1) {
+                    menu.show('Blind',null,500);
+                    div.hide();
+                    this.process = 0;
+                }
+                else
+                    this.process--;
+          };
+            this.cancell = function() {
+                this.process = 0;
+                menu.show('Blind',null,500);
+                div.hide();
+            };
+      }
+
       function initMap()  {
         var mapStyle = [
                     {
@@ -71,9 +117,9 @@
           fullscreenControl: false,
           styles: mapStyle
         });
-        var strictBounds = new google.maps.LatLngBounds(
-     new google.maps.LatLng(19.924622, -100.658860),
-     new google.maps.LatLng(21.781664, -98.679163)
+       var strictBounds = new google.maps.LatLngBounds(
+       new google.maps.LatLng(19.924622, -100.658860),
+       new google.maps.LatLng(21.781664, -98.679163)
    );
 
    // Listen for the dragend event
@@ -97,8 +143,8 @@
 
      map.setCenter(new google.maps.LatLng(y, x));
    });
-        
-        map.data.loadGeoJson('/christian/Queretaro.geojson');
+
+        map.data.loadGeoJson('Queretaro.geojson');
         map.data.setStyle({
                     strokeColor: "#00000",
                     fillColor: "#D69A2D",
@@ -108,7 +154,7 @@
                     draggable: false,
                     editable: false,
                 });
-                
+
                 corregidoraMapType = new google.maps.ImageMapType({
                     getTileUrl: function(coord, zoom) {
                         if (zoom < 11 || hidemap)
@@ -124,7 +170,7 @@
                     isPng: true
                 });
                 map.overlayMapTypes.push(corregidoraMapType);
-                
+
                 var panorama = new google.maps.StreetViewPanorama(
                 document.getElementById('pano'), {
                   position: fenway,
@@ -134,10 +180,16 @@
                   }
                 });
             map.setStreetView(panorama);
+
+          $(document).ready(function(){
+            wait = new loading($("#box"),$('#canvas'));
+            //wait.show();
+          });
+
       }
         </script>
         <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVY-FP39JT5-RHWdzQR4Xf4w3krWrhvmw&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgFAK8KpX8Ec-NXs9qpufjAw9xsEtAFY4&callback=initMap"> <!--AIzaSyCVY-FP39JT5-RHWdzQR4Xf4w3krWrhvmw-->
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!--Fin del mapa y 360-->
@@ -151,7 +203,7 @@
                 <a  href="perfil.html" ><p class="select"> <i class="material-icons">account_circle</i> Ver perfil</p></a>
                 <a  href="login.html"><p class="select"><i class="material-icons">input</i> Salir</p></a>
             </div>
-            
+
             <button class="accordion"><strong>Capas</strong></button>
             <div class="panel">
                     <div class="tab">
@@ -162,42 +214,42 @@
                             <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black"><i class="fa fa-search"></i>
                             <br><br>
                             <label class="container">Salud
-                                    <input type="checkbox" checked="checked">
+                                    <input type="checkbox" class="capa">
                                     <span class="checkmark"></span>
                                   </label>
                                   <label class="container">Educación
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="capa">
                                     <span class="checkmark"></span>
                                   </label>
                                   <label class="container">Tránsito
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="capa">
                                     <span class="checkmark"></span>
                                   </label>
                                   <label class="container">Policía
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="capa">
                                     <span class="checkmark"></span>
-                            </label>                          
+                            </label>
                          </div>
-                          
+
                           <div id="miscapas" class="tabcontent">
                                 <strong>Buscar:</strong> <input type="text" style="border-radius: 999px;background:transparent;color:black; text-align:center;size: 30px;border-color: black"> <i class="fa fa-search"></i>
                                 <br><br>
                                      <label class="container">Capa 1
-                                        <input type="checkbox" checked="checked">
+                                        <input type="checkbox" class="capa" id="capa1">
                                         <span class="checkmark"></span>
                                       </label>
                                       <label class="container">Capa 2
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="capa">
                                         <span class="checkmark"></span>
                                       </label>
                                       <label class="container">Capa 3
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="capa">
                                         <span class="checkmark"></span>
                                       </label>
                                       <label class="container">Capa 4
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="capa">
                                         <span class="checkmark"></span>
-                                     </label> 
+                                     </label>
                             </div>
                           <script>
                                 function openCity(evt, cityName) {
@@ -213,18 +265,36 @@
                                     document.getElementById(cityName).style.display = "block";
                                     evt.currentTarget.className += " active";
                                 }
-                         </script>       
-            </div>    
+                         </script>
+            </div>
             <button class="accordion"><strong>GPS</strong></button>
             <div class="panel">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
     </ul>
 </div>
+
+<div class="" id="canvas" >
+
+</div>
+<div class="" id="box">
+  <img src="tenor.gif" alt="loading...">
+</div>
+<!--Fin del menu-->
+<!--Menú de herramientas-->
+<div class="menud" >
+    <acronym title="Imprimir"><p><i class="material-icons" style="cursor: pointer;">print</i></p></acronym>
+    <acronym title="Borrar todas capas"><p><i class="material-icons" style="cursor: pointer;">delete</i></p></acronym>
+    <acronym title="Ocultar capas"><p><i class="material-icons" style="cursor: pointer;">visibility_off</i></p></acronym>
+    <acronym title="Mostrar capas"><p><i class="material-icons" style="cursor: pointer;">visibility</i></p></acronym>
+    <acronym title="Guardar"><p><i class="material-icons" style="cursor: pointer;">save</i></p></acronym>
+    <acronym title="Importar" id="kmlFile"><p><i class="material-icons" style="cursor: pointer;">archive</i></p></acronym>
+</div>
 <script>
         var acc = document.getElementsByClassName("accordion");
+        console.log(acc);
         var i;
-        
+
         for (i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
@@ -236,16 +306,23 @@
                 }
             });
         }
+
+        var kml = document.querySelector("#kmlFile");
+        kml.addEventListener('click', () => {
+          window.open("loadkml.html");
+        });
+
+        if ($("#capa1").on('click', function(){
+          if ($(this).is(":checked")) {
+              map.data.loadGeoJson('map.geojson');
+          }
+          else {
+          map.data.loadGeoJson(null);
+          }
+        })) {
+
+        }
+
 </script>
-<!--Fin del menu-->
-<!--Menú de herramientas-->
-<div class="menud" >
-    <acronym title="Imprimir"><p><i class="material-icons" style="cursor: pointer;">print</i></p></acronym>
-    <acronym title="Borrar todas capas"><p><i class="material-icons" style="cursor: pointer;">delete</i></p></acronym>
-    <acronym title="Ocultar capas"><p><i class="material-icons" style="cursor: pointer;">visibility_off</i></p></acronym>
-    <acronym title="Mostrar capas"><p><i class="material-icons" style="cursor: pointer;">visibility</i></p></acronym>
-    <acronym title="Guardar"><p><i class="material-icons" style="cursor: pointer;">save</i></p></acronym>
-    <acronym title="Importar"><p><i class="material-icons" style="cursor: pointer;">archive</i></p></acronym>
-</div>  
-</body>  
+</body>
 </html>
